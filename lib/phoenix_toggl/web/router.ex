@@ -11,16 +11,22 @@ defmodule PhoenixToggl.Web.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.LoadResource
   end
 
   scope "/", PhoenixToggl.Web do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/*path", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PhoenixToggl.Web do
-  #   pipe_through :api
-  # end
+  scope "/api", PhoenixToggl.Web do
+    pipe_through :api
+
+    scope "/v1" do
+
+    end
+  end
 end
