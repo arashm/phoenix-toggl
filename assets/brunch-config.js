@@ -45,8 +45,24 @@ exports.config = {
   // Configure your plugins
   plugins: {
     babel: {
+      presets: ['es2015', 'react', 'stage-2', 'stage-0'],
       // Do not use ES6 compiler in vendor code
       ignore: [/vendor/]
+    },
+    sass: {
+      options: {
+        includePaths: ['node_modules'],
+      },
+    },
+    postcss: {
+      processors: [
+        require('autoprefixer')(['last 4 versions'])
+      ]
+    },
+    copycat:{
+      "fonts" : ["node_modules/font-awesome/fonts"],
+      verbose : true, //shows each file that is copied to the destination directory
+      onlyChanged: true //only copy a file if it's modified time has changed (only effective when using brunch watch)
     }
   },
 
@@ -57,6 +73,33 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+
+    // Whitelist the npm deps to be pulled in as front-end assets.
+    // All other deps in package.json will be excluded from the bundle.
+    whitelist: [
+      'bourbon',
+      'bourbon-neat',
+      'classnames',
+      'es6-promise',
+      'history',
+      'invariant',
+      'isomorphic-fetch',
+      'moment',
+      'phoenix',
+      'phoenix_html',
+      'react',
+      'react-addons-css-transition-group',
+      'react-dom',
+      'react-gravatar',
+      'react-page-click',
+      'react-redux',
+      'react-router',
+      'react-router-redux',
+      'redux',
+      'redux-logger',
+      'redux-thunk',
+      'react-favicon',
+    ]
   }
 };

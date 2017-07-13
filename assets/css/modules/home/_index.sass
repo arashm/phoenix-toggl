@@ -1,0 +1,190 @@
+#home_index
+  .timer-container
+    position: relative
+    padding-top: $base-spacing
+
+  .timer-actions
+    position: absolute
+    top: 0
+    right: 0
+    z-index: 9
+    line-height: 1em
+
+    a
+      color: $blue
+      font-weight: bold
+      font-size: .8em
+
+      &:hover
+        color: $light-blue
+
+  .timer-wrapper
+    display: flex
+    background-color: #fff
+    position: relative
+    box-shadow: 0 1px 4px rgba(128,128,128,.4)
+    font-size: 1.4em
+    margin-bottom: $base-spacing*2
+
+    > div
+      display: flex
+      flex: 0 0 auto
+
+    .description-container
+      box-flex: 1
+      flex: 1 1 auto
+
+    .date-time-container
+      padding: 0 $base-spacing
+      input
+        color: $base-font-color
+        width: 7em
+
+    .button-container
+      width: 20%
+      max-width: 192px
+
+      button
+        +fill-parent
+        color: #fff
+
+        &.started
+          background: $green
+
+          &:hover
+            background: $dark-green
+
+    [type=text]
+      margin: 0
+      box-shadow: 0 0 0
+      border: 0px none
+
+  .time-entries
+    margin-bottom: $base-spacing*1.5
+
+    header
+      display: flex
+      margin-bottom: $base-spacing/2
+      > div
+        line-height: 51px
+      .title
+        font-size: 1.3em
+        margin-right: .5em
+    ul
+      li
+        display: flex
+        transition: $default-transition
+        height: 52px
+        border-bottom: 1px solid shade($light-gray, 10)
+        &:hover
+          background: shade($light-gray, 5)
+
+          .continue-container
+            a
+              opacity: 1
+        > div
+          flex: 0 0 auto
+          line-height: 51px
+
+    .checkbox-container
+      transition: $default-transition
+      padding: 0 0 0 $base-spacing
+      text-align: center
+      position: relative
+      cursor: pointer
+      border: 1px solid transparent
+      margin-right: $small-spacing
+
+      &:hover, &.active
+        border: 1px solid $gray
+        .fa-caret-down
+          opacity: 1
+
+
+      .fa-caret-down
+        transition: $default-transition
+        display: inline-block
+        opacity: 0
+        font-size: 1.2em
+        padding: 0 $small-spacing
+        line-height: 52px
+
+
+      [type=checkbox]
+        display: none
+        + label
+          margin-bottom: 0
+          display: inline-block
+          &:before
+            content: ""
+            display: inline-block
+            height: 15px
+            width: 15px
+            text-align: center
+            color: #fff
+            border: solid 1px #ddd
+            background: #fff
+            position: relative
+            line-height: 15px
+            top: 2px
+            vertical-align: baseline
+            cursor: pointer
+        &:checked + label:before
+          content: "\f00c"
+          font-family: FontAwesome
+          color: #333
+
+      .dropdown
+        position: absolute
+        display: block
+        z-index: 99
+        left: 0
+        animation-duration: .3s
+        animation-name: fadeIn
+        background: #fff
+        border: 1px solid $gray
+        width: 10em
+        padding: 4px 0
+        text-align: left
+        box-shadow: 0 1px 3px rgba($gray,.5)
+        margin-top: -3fpx
+        margin-left: -1px
+
+        li
+          display: block
+          height: auto
+          border-bottom: 0px none
+
+          a
+            display: block
+            color: $dark-gray
+            line-height: 2em
+            padding: 0 1em
+            &:hover
+              color: $base-font-color
+
+
+
+    .description-container
+      flex: 1 1 auto
+      cursor: pointer
+
+
+      [type=text]
+        margin-bottom: 0
+        display: inline-block
+        width: 25em
+
+    .continue-container
+      a
+        transition: $default-transition
+        color: shade($light-gray, 20)
+        opacity: 0
+        font-size: 1.2em
+        &:hover
+          color: $green
+
+    .duration-container
+      width: 150px
+      text-align: right
+      padding-right: $base-spacing

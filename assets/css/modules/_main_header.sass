@@ -1,0 +1,93 @@
+#main_header
+  background: #333
+  margin-bottom: $base-spacing
+
+  nav
+    display: inline-block
+    float: left
+    > ul > li > a
+      border-right: 1px solid rgba(#fff, .1)
+      &:last-of-type
+        border-left: 1px solid rgba(#fff, .1)
+
+  .logo-link
+    font-size: 1.3em
+    font-weight: bold
+    margin-right: $base-spacing
+
+  .logo
+    $size: 26px
+    width: $size
+    height: $size
+    border-radius: 50%
+    background-color: $red
+    display: inline-block
+    vertical-align: middle
+
+  a
+    color: $light-gray
+
+    &:hover
+      color: #fff
+
+    &.active
+      background: $light-gray
+      color: #333
+
+  .right
+    float: right
+
+  ul
+    display: inline-block
+    li
+      display: inline-block
+      a
+        line-height: 3.5em
+        display: inline-block
+        padding: 0 2em
+
+      &.menu-wrapper
+        position: relative
+
+        > a
+          transition: $default-transition
+          position: relative
+
+          &:hover, &.visible
+            background: #000
+
+          &:after
+            content: ""
+            width: 0
+            height: 0
+            border: solid 6px
+            border-color: #595959 transparent transparent
+            margin-right: 30px
+            margin-top: -3px
+            display: inline-block
+            position: static
+            right: auto
+            margin: 0 0 -6px 12px
+            line-height: 45px
+
+        .dropdown
+          position: absolute
+          display: block
+          z-index: 99
+          background: #000
+          right: 0
+          width: 12em
+          animation-duration: .3s
+          animation-name: fadeIn
+          padding: .5em 0
+
+          li
+            display: block
+
+          a
+            transition: $default-transition
+            padding: 0 1em
+            display: block
+
+            &:hover
+              background: tint(#333, 10)
