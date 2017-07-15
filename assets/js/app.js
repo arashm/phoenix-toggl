@@ -1,11 +1,12 @@
 import React                    from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import ReactDOM                 from 'react-dom';
 import Root                     from './containers/root';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter }        from 'react-router-dom'
+import thunk                    from 'redux-thunk';
 import reducers                 from './reducers';
 
-let store  = createStore(reducers);
+let store  = createStore(reducers, applyMiddleware(thunk));
 
 const target = document.getElementById('main_wrapper');
 const node = (
