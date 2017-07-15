@@ -19,7 +19,7 @@ class RegistrationsNewView extends React.Component {
     const { dispatch } = this.props;
 
     const data = {
-      first_name: this.refs.firstName.value,
+      firstname: this.refs.firstname.value,
       email: this.refs.email.value,
       password: this.refs.password.value,
     };
@@ -40,8 +40,8 @@ class RegistrationsNewView extends React.Component {
             </header>
             <form id="sign_up_form" onSubmit={::this._handleSubmit}>
               <div className="field">
-                <input ref="firstName" id="user_first_name" type="text" placeholder="First name" required={true} />
-                {renderErrorsFor(errors, 'first_name')}
+                <input ref="firstname" id="user_first_name" type="text" placeholder="First name" required={true} />
+                {renderErrorsFor(errors, 'firstname')}
               </div>
               <div className="field">
                 <input ref="email" id="user_email" type="email" placeholder="Email" required={true} />

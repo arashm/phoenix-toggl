@@ -26,7 +26,7 @@ defmodule PhoenixToggl.Web.Router do
     pipe_through :api
 
     scope "/v1" do
-
+      post "/registrations", RegistrationController, :create
     end
   end
 end
