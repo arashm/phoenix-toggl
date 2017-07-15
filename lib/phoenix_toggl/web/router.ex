@@ -27,6 +27,8 @@ defmodule PhoenixToggl.Web.Router do
 
     scope "/v1" do
       post "/registrations", RegistrationController, :create
+
+      resources "/sessions", SessionController, only: [:create, :delete]
     end
   end
 end
