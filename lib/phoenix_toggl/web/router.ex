@@ -29,6 +29,7 @@ defmodule PhoenixToggl.Web.Router do
       post "/registrations", RegistrationController, :create
 
       resources "/sessions", SessionController, only: [:create, :delete]
+      resources "/time_entries", TimeEntryController, only: [:index]
     end
   end
 end
