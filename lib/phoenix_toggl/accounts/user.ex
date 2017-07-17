@@ -12,6 +12,9 @@ defmodule PhoenixToggl.Accounts.User do
     field :lastname, :string
     field :password, :string, virtual: true
 
+    many_to_many :boards, PhoenixToggl.Workspaces.Board,
+      join_through: "board_users"
+
     timestamps()
   end
 
