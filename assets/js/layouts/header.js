@@ -1,6 +1,6 @@
 import React            from 'react';
 import { connect }      from 'react-redux';
-import { Link, IndexLink }         from 'react-router';
+import { Link }         from 'react-router-dom';
 import PageClick        from 'react-page-click';
 import { routeActions } from 'react-router-redux';
 import classnames       from 'classnames';
@@ -88,10 +88,10 @@ class Header extends React.Component {
             </Link>
             <ul>
               <li>
-                <IndexLink to="/" activeClassName="active">Timer</IndexLink>
+                {/*<IndexLink to="/" activeClassName="active">Timer</IndexLink>*/}
               </li>
               <li>
-                <Link to="/reports" activeClassName="active">Reports</Link>
+                <Link to="/reports">Reports</Link>
               </li>
             </ul>
           </nav>

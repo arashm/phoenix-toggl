@@ -1,7 +1,8 @@
 import React            from 'react';
 import { connect }      from 'react-redux';
+import { push }         from 'react-router-redux';
 import Favicon          from 'react-favicon';
-
+import Actions          from '../actions/sessions';
 import Header           from '../layouts/header';
 import {
   faviconData,
@@ -17,6 +18,16 @@ class AuthenticatedContainer extends React.Component {
     return (
       <Favicon url={url} />
     );
+  }
+
+  componentWillMount() {
+    const { currentUser, dispatch } = this.props;
+
+    if (!currentUser && localStorage.getItem('phoenixAuthToken')) {
+      dispatch(Actions.currentUser());
+    } else if (!localStorage.getItem('phoenixAuthToken')) {
+      dispatch(push('/sign_up'));
+    }
   }
 
   render() {

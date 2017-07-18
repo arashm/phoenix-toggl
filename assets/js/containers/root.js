@@ -11,16 +11,6 @@ import SessionsNewView from '../views/sessions/new'
 import AuthenticatedContainer from '../containers/authenticated'
 
 export default class Root extends React.Component {
-  _ensureAuthenticated() {
-    const { currentUser, dispatch } = this.props;
-
-    if (!currentUser && localStorage.getItem('phoenixAuthToken')) {
-      dispatch(Actions.currentUser());
-    } else if (!localStorage.getItem('phoenixAuthToken')) {
-      this.props.location.pathname = '/sign_up'
-    }
-  }
-
   render() {
     const { store } = this.props;
 
@@ -32,11 +22,8 @@ export default class Root extends React.Component {
               <Route path="/sign_up" component={RegistrationsNewView} />
               <Route path="/sign_in" component={SessionsNewView} />
               <Route path="/" component={AuthenticatedContainer}>
-              {/* <Route path="/reports" component={ReportsIndexView} /> */}
+                {/* <Route path="/reports" component={ReportsIndexView} /> */}
               </Route>
-              {/*
-                <IndexRoute component={HomeIndexView} />
-              */}
             </Switch>
           </Router>
         </MainLayout>

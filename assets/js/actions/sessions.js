@@ -1,7 +1,7 @@
-import { push }                   from 'react-router-redux';
-import Constants                          from '../constants';
-import { Socket }                         from 'phoenix';
-import { httpGet, httpPost, httpDelete }  from '../utils';
+import { push }                          from 'react-router-redux';
+import Constants                         from '../constants';
+import { Socket }                        from 'phoenix';
+import { httpGet, httpPost, httpDelete } from '../utils';
 
 export function setCurrentUser(dispatch, user) {
   const socket = new Socket('/socket', {
@@ -69,8 +69,6 @@ const Actions = {
         setCurrentUser(dispatch, data);
       })
       .catch(function (error) {
-        debugger;
-        console.log(error);
         dispatch(push('/sign_in'));
       });
     };
