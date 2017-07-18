@@ -15,21 +15,21 @@ defmodule PhoenixToggl.Web.Router do
     plug Guardian.Plug.LoadResource
   end
 
-  scope "/", PhoenixToggl.Web do
-    pipe_through :browser # Use the default browser stack
-
-    get "/*path", PageController, :index
-  end
-
-  # Other scopes may use custom stacks.
   scope "/api", PhoenixToggl.Web do
     pipe_through :api
 
     scope "/v1" do
       post "/registrations", RegistrationController, :create
 
+      get "/current_user", CurrentUserController, :show
       resources "/sessions", SessionController, only: [:create, :delete]
       resources "/time_entries", TimeEntryController, only: [:index]
     end
+  end
+
+  scope "/", PhoenixToggl.Web do
+    pipe_through :browser # Use the default browser stack
+
+    get "/*path", PageController, :index
   end
 end
