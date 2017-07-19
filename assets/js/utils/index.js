@@ -78,15 +78,11 @@ export function renderErrorsFor(errors, ref) {
 }
 
 export function timexDateTimeToString(date) {
-  const { year, month, day, hour, minute, second } = date;
-
-  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+  return moment(date).format('YYYY-MM-DD h:mm:ss')
 }
 
 export function timexDateToString(date) {
-  const { year, month, day } = date;
-
-  return `${year}-${month}-${day}`;
+  return moment(date).format('YYYY-MM-DD')
 }
 
 export function formatDuration(duration) {
