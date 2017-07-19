@@ -78,7 +78,7 @@ export function renderErrorsFor(errors, ref) {
 }
 
 export function timexDateTimeToString(date) {
-  return moment(date).format('YYYY-MM-DD h:mm:ss')
+  return moment(date).format('YYYY-MM-DD H:mm:ss')
 }
 
 export function timexDateToString(date) {

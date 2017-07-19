@@ -184,7 +184,7 @@ class HomeIndexView extends React.Component {
     const minutes = momentDuration.minutes()
     const seconds = momentDuration.seconds()
 
-    return `${minutes} h ${minutes} min ${seconds} secs`;
+    return `${hours} h ${minutes} min ${seconds} secs`;
   }
 
   _handlePageClick() {

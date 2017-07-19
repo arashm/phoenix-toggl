@@ -72,7 +72,7 @@ defmodule PhoenixToggl.Web.UserChannel do
   }, socket) do
     current_user = socket.assigns.current_user
 
-    {:ok, restarted_at} = Timex.parse(restarted_at, "{ISO}")
+    {:ok, restarted_at} = Timex.parse(restarted_at, "{ISO:Extended}")
 
     current_user
     |> Ecto.assoc(:time_entries)

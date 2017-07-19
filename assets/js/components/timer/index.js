@@ -98,6 +98,7 @@ export default class Timer extends React.Component {
 
     const timer = new Tock({
       start: '00:00:00',
+      interval: 1000,
       callback: () => {
         const currentTime = moment.duration(timer.lap());
         const timeText = formatDuration(currentTime);
@@ -108,12 +109,12 @@ export default class Timer extends React.Component {
     });
 
     if (timeEntry.restarted_at != null) {
-      const timeEntryStart = moment.utc(timexDateTimeToString(timeEntry.restarted_at), 'YYYY-M-D H:m:s');
+      const timeEntryStart = moment.utc(timexDateTimeToString(timeEntry.restarted_at), 'YYYY-MM-DD H:mm:ss');
       const initialTime = moment.utc().diff(moment(timeEntryStart), 'milliseconds');
 
       timer.start((timeEntry.duration * 1000) + initialTime);
     } else {
-      const timeEntryStart = moment.utc(timexDateTimeToString(timeEntry.started_at), 'YYYY-M-D H:m:s');
+      const timeEntryStart = moment.utc(timexDateTimeToString(timeEntry.started_at), 'YYYY-MM-DD H:mm:ss');
       const initialTime = moment.utc().diff(moment(timeEntryStart), 'milliseconds');
 
       timer.start(initialTime);
