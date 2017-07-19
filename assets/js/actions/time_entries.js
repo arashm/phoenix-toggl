@@ -9,7 +9,7 @@ export function fetchTimeEntries() {
     .then((payload) => {
       dispatch({
         type: Constants.TIME_ENTRIES_FETCH_SUCCESS,
-        items: payload.time_entries,
+        items: payload.data,
       });
     });
   };
