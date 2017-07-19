@@ -1,5 +1,5 @@
 # Phoenix Toggl
-An updated version of (phoenix-toggle)[https://github.com/bigardone/phoenix-toggl] using phoenix 1.3. All front-end libs like React, React Router, and Redux are also updated. This was just intended for learning Phoenix and React.
+An updated version of [phoenix-toggl](https://github.com/bigardone/phoenix-toggl) using Phoenix 1.3.0. All front-end libs like React, React Router, and Redux are also updated. This was just intended for learning Phoenix and React.
 [Toggl](https://toggl.com/) tribute done with [Elixir](https://github.com/elixir-lang/elixir), [Phoenix Framework](https://github.com/phoenixframework/phoenix), [React](https://github.com/facebook/react) and [Redux](https://github.com/reactjs/redux).
 
 ![`timer`](http://codeloveandboards.com/images/blog/toggl_tribute/timer-e9b1582f.jpg)
