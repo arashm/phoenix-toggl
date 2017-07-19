@@ -14,6 +14,7 @@ defmodule PhoenixToggl.Application do
       supervisor(PhoenixToggl.Web.Endpoint, []),
       # Start your own worker by calling: PhoenixToggl.Worker.start_link(arg1, arg2, arg3)
       # worker(PhoenixToggl.Worker, [arg1, arg2, arg3]),
+      supervisor(PhoenixToggl.TimeBoundries.TimerMonitor.Supervisor, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
