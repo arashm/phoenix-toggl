@@ -2,7 +2,12 @@ defmodule PhoenixToggl.TimeBoundries.TimeEntry do
   use Ecto.Schema
   use Timex
   import Ecto.{ Query, Changeset }
-  alias PhoenixToggl.TimeBoundries.TimeEntry
+  alias PhoenixToggl.{ TimeBoundries.TimeEntry, Accounts.User, Workspace.Board }
+
+  @derive {Poison.Encoder, only: [
+    :id, :description, :started_at, :stopped_at, :restarted_at, :duration,
+    :updated_at
+  ]}
 
   schema "time_boundries_time_entries" do
     field :description, :string
@@ -11,7 +16,8 @@ defmodule PhoenixToggl.TimeBoundries.TimeEntry do
     field :started_at, :naive_datetime
     field :stopped_at, :naive_datetime
 
-    belongs_to :user, Accounts.User
+    belongs_to :board, Board
+    belongs_to :user, User
 
     timestamps()
   end
@@ -19,8 +25,11 @@ defmodule PhoenixToggl.TimeBoundries.TimeEntry do
   @doc false
   def changeset(%TimeEntry{} = time_entry, attrs) do
     time_entry
-    |> cast(attrs, [:description, :started_at, :stopped_at, :restarted_at, :duration])
-    |> validate_required([:started_at, :user_id])
+    |> cast(attrs, [
+      :description, :started_at, :stopped_at, :restarted_at, :duration,
+      :user_id, :board_id
+    ])
+    |> validate_required([:started_at])
     |> foreign_key_constraint(:user_id)
   end
 
@@ -40,9 +49,9 @@ defmodule PhoenixToggl.TimeBoundries.TimeEntry do
   def stop_changeset(model, params \\ :empty) do
     duration = case model.restarted_at do
       nil ->
-        Timex.diff(model.started_at, params.stopped_at, :secs)
+        Timex.diff(params.stopped_at, model.started_at, :seconds)
       restarted_at ->
-        model.duration + Timex.diff(restarted_at, params.stopped_at, :secs)
+        model.duration + Timex.diff(params.stopped_at, restarted_at, :seconds)
     end
 
     model
@@ -58,7 +67,7 @@ defmodule PhoenixToggl.TimeBoundries.TimeEntry do
     model
     |> changeset(params)
     |> cast(
-      params, [:description, :stopped_at, :duration, :workspace_id, :restarted_at]
+      params, [:description, :stopped_at, :duration, :board_id, :restarted_at]
     )
     |> validate_required([:restarted_at])
     |> put_change(:stopped_at, nil)
