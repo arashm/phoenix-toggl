@@ -15,19 +15,13 @@ export default class Root extends React.Component {
     const { store } = this.props;
 
     return (
-      <Provider store={store}>
-        <MainLayout>
-          <Router>
-            <Switch>
-              <Route path="/sign_up" component={RegistrationsNewView} />
-              <Route path="/sign_in" component={SessionsNewView} />
-              <Route path="/" component={AuthenticatedContainer}>
-                {/* <Route path="/reports" component={ReportsIndexView} /> */}
-              </Route>
-            </Switch>
-          </Router>
-        </MainLayout>
-      </Provider>
+      <MainLayout>
+        <Switch>
+          <Route path="/sign_up" component={RegistrationsNewView} />
+          <Route path="/sign_in" component={SessionsNewView} />
+          <Route path="/" component={AuthenticatedContainer} />
+        </Switch>
+      </MainLayout>
     );
   }
 }

@@ -4,6 +4,9 @@ import { push }         from 'react-router-redux';
 import Favicon          from 'react-favicon';
 import Actions          from '../actions/sessions';
 import Header           from '../layouts/header';
+import { Route }        from 'react-router-dom'
+import ReportsIndexView from '../views/reports'
+import HomeIndexView    from '../views/home'
 import {
   faviconData,
   creditsText
@@ -26,7 +29,7 @@ class AuthenticatedContainer extends React.Component {
     if (!currentUser && localStorage.getItem('phoenixAuthToken')) {
       dispatch(Actions.currentUser());
     } else if (!localStorage.getItem('phoenixAuthToken')) {
-      dispatch(push('/sign_up'));
+      dispatch(push('/sign_in'));
     }
   }
 
@@ -41,7 +44,8 @@ class AuthenticatedContainer extends React.Component {
         <Header/>
 
         <div className='main-container'>
-          {this.props.children}
+          <Route exact path="/" component={HomeIndexView} />
+          <Route path="/reports" component={ReportsIndexView} />
         </div>
         <footer id="main_footer">
           <div className="container">

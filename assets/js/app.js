@@ -1,20 +1,35 @@
-import React                    from 'react';
-import { createStore, applyMiddleware } from 'redux';
-import ReactDOM                 from 'react-dom';
-import Root                     from './containers/root';
-import { BrowserRouter }        from 'react-router-dom'
-import thunk                    from 'redux-thunk';
-import reducers                 from './reducers';
+import React             from 'react';
+import {
+  createStore,
+  applyMiddleware
+}                        from 'redux';
+import ReactDOM          from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
+import {
+  ConnectedRouter,
+  routerMiddleware
+}                        from 'react-router-redux'
+import thunk             from 'redux-thunk';
+import reducers          from './reducers';
+import createHistory     from 'history/createBrowserHistory'
+import Root              from './containers/root';
+import { Provider }      from 'react-redux';
 
-let store  = createStore(reducers, applyMiddleware(thunk));
+const history = createHistory()
+const middleware = [routerMiddleware(history), thunk]
+
+const store = createStore(
+  reducers,
+  applyMiddleware(...middleware)
+)
 
 const target = document.getElementById('main_wrapper');
 const node = (
-  <BrowserRouter>
-    <div>
-      <Root store={store} />;
-    </div>
-  </BrowserRouter>
-)
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Root store={store} />
+    </ConnectedRouter>
+  </Provider>
+);
 
 ReactDOM.render(node, target);
