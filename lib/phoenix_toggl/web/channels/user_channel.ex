@@ -31,7 +31,7 @@ defmodule PhoenixToggl.Web.UserChannel do
 
     attributes = %{
       description: description,
-      workspace_id: workspace_id,
+      board_id: workspace_id,
       user_id: current_user.id,
       started_at: started_at
     }
@@ -55,7 +55,7 @@ defmodule PhoenixToggl.Web.UserChannel do
     "stopped_at" => stopped_at,
   }, socket) do
     current_user = socket.assigns.current_user
-    {:ok, stopped_at} = Timex.parse(stopped_at, "{ISO}")
+    {:ok, stopped_at} = Timex.parse(stopped_at, "{ISO:Extended}")
 
     time_entry = socket.assigns.time_entry
     |> TimeEntryActions.stop(stopped_at)
