@@ -21,7 +21,7 @@ defmodule PhoenixToggl.Reports.Reporter do
       |> Timex.beginning_of_week(:mon)
     end_date = Timex.end_of_week(now, :mon)
 
-    days = Timex.diff(start_date, end_date, :days)
+    days = Timex.diff(end_date, start_date, :days)
     days_data = process_days(user, days, start_date)
     total_duration = calculate_total_duration(days_data)
 
